@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AISAT Student RPG</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Introduction Screen -->
+    <div id="intro-screen" class="screen">
+        <div class="intro-container">
+            <h1>AISAT STUDENT RPG</h1>
+            <div id="intro-text" class="typewriter"></div>
+            <button id="start-game" class="btn-primary">Start Journey</button>
+        </div>
+    </div>
+
+    <!-- Main Menu -->
+    <div id="main-menu" class="screen">
+        <div class="menu-container">
+            <h1>AISAT STUDENT RPG</h1>
+            <button id="menu-start" class="btn-primary">New Game</button>
+            <button id="menu-settings" class="btn-secondary">Settings</button>
+            <button id="menu-exit" class="btn-secondary">Exit</button>
+        </div>
+    </div>
+
+    <!-- Character Customization -->
+    <div id="character-customization" class="screen">
+        <div class="customization-container">
+            <h2>Create Your Character</h2>
+            <form id="customization-form">
+                <div class="form-group">
+                    <label for="player-name">Name:</label>
+                    <input type="text" id="player-name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="player-gender">Gender:</label>
+                    <select id="player-gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="player-major">Major:</label>
+                    <select id="player-major">
+                        <option value="engineering">Engineering</option>
+                        <option value="business">Business</option>
+                        <option value="arts">Arts</option>
+                        <option value="science">Science</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">Start Game</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Settings Menu -->
+    <div id="settings-menu" class="screen">
+        <div class="settings-container">
+            <h2>Game Settings</h2>
+            <div class="settings-group">
+                <label for="volume">Volume:</label>
+                <input type="range" id="volume" min="0" max="100" value="70">
+                <span id="volume-value">70%</span>
+            </div>
+            <div class="settings-group">
+                <label for="difficulty">Difficulty:</label>
+                <select id="difficulty">
+                    <option value="easy">Easy</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+            <div class="settings-group">
+                <label>
+                    <input type="checkbox" id="notifications" checked> Enable Notifications
+                </label>
+            </div>
+            <div class="settings-group">
+                <button id="mode-toggle" class="btn-secondary">🌞</button>
+                <span>Toggle Dark Mode</span>
+            </div>
+            <button id="settings-back" class="btn-primary">Back to Menu</button>
+        </div>
+    </div>
+
+    <!-- Game UI -->
+    <div id="game-ui" class="screen">
+        <div class="game-header">
+            <div class="player-info">
+                <span id="display-player-name">Player</span>
+                <span> | Aura: <span id="aura-points">100</span></span>
+            </div>
+            <div class="time-display">
+                <span id="day-label">DAY 1</span>
+                <span id="clock">08:00</span>
+            </div>
+        </div>
+
+        <div class="stats-container">
+            <canvas id="statsRadar" width="300" height="250"></canvas>
+        </div>
+
+        <div class="activities-container">
+            <div class="activity-category">
+                <h3>Daily Tasks</h3>
+                <button id="task-gym" class="activity-btn">🏋️ Gym</button>
+                <button id="task-study" class="activity-btn">📚 Study</button>
+                <button id="task-socialize" class="activity-btn">👥 Socialize</button>
+            </div>
+
+            <div class="activity-category">
+                <h3>Campus Events</h3>
+                <button id="event-sports" class="activity-btn">⚽ Sports Event</button>
+                <button id="event-exam" class="activity-btn">📝 Exam</button>
+                <button id="event-party" class="activity-btn">🎉 Party</button>
+            </div>
+
+            <div class="activity-category">
+                <h3>Wellness</h3>
+                <button id="activity-meditate" class="activity-btn">🧘 Meditate</button>
+                <button id="activity-sleep" class="activity-btn">😴 Extra Sleep</button>
+                <button id="activity-therapy" class="activity-btn">💬 Therapy</button>
+            </div>
+
+            <div class="activity-category">
+                <h3>Jobs</h3>
+                <button id="job-work" class="activity-btn">💼 Work Shift</button>
+                <button id="job-freelance" class="activity-btn">💻 Freelance</button>
+            </div>
+        </div>
+
+        <div class="rewards-container">
+            <h3>Aura Rewards</h3>
+            <div class="rewards-grid">
+                <button id="reward-skip-day" class="reward-btn" title="20 Aura Points">⏭️ Skip Day</button>
+                <button id="reward-energy-boost" class="reward-btn" title="15 Aura Points">⚡ Energy Boost</button>
+                <button id="reward-study-bonus" class="reward-btn" title="25 Aura Points">📖 Study Bonus</button>
+                <button id="reward-social-boost" class="reward-btn" title="18 Aura Points">🌟 Social Boost</button>
+                <button id="reward-mental-refresh" class="reward-btn" title="30 Aura Points">🧠 Mental Refresh</button>
+            </div>
+        </div>
+
+        <div id="save-load">
+            <button id="save-game" class="btn-secondary">💾 Save</button>
+            <button id="load-game" class="btn-secondary">📂 Load</button>
+        </div>
+    </div>
+
+    <!-- Friend Popup -->
+    <div id="friend-popup">
+        <div id="friend-popup-content"></div>
+    </div>
+
+    <!-- Day Popup -->
+    <div id="day-popup">
+        <div id="day-popup-text"></div>
+    </div>
+
+ <div id="end-result" class="screen">
+    <div class="end-container">
+        <div class="congratulations">
+            <h1>CONGRATULATIONS</h1>
+            <p>You've completed your journey at AISAT, <span id="final-player-name">Student</span>!</p>
+        </div>
+        
+        <div class="final-stats">
+            <h2>Your Final Stats</h2>
+            <canvas id="finalRadar" width="350" height="300"></canvas>
+        </div>
+        
+        <div class="title-result">
+            <h2>Your Student Title:</h2>
+            <div id="slot-machine">
+                <div id="slot-result">Balanced Student</div>
+            </div>
+        </div>
+        
+        <div class="end-buttons">
+            <button id="restart-game" class="btn-primary">🔄 Restart Game</button>
+            <button id="exit-game" class="btn-secondary">🚪 Exit</button>
+            <button id="share-result" class="btn-secondary">📤 Share Result</button>
+        </div>
+    </div>
+    <!-- Exit Confirmation Modal -->
+<div id="exit-modal" class="modal">
+    <div class="modal-content">
+        <h2>Exit Game</h2>
+        <p>Are you sure you want to exit AISAT Student RPG?</p>
+        <div class="modal-buttons">
+            <button id="exit-confirm" class="btn-primary">Yes, Exit</button>
+            <button id="exit-cancel" class="btn-secondary">Cancel</button>
+        </div>
+    </div>
+</div>
+
+    <!-- Audio Elements -->
+    <audio id="win-audio" src="win.mp3" preload="auto"></audio>
+<audio id="click-audio" src="click.mp3" preload="auto"></audio>
+<audio id="task-audio" src="task.mp3" preload="auto"></audio>
+<audio id="day-audio" src="day.mp3" preload="auto"></audio>
+<audio id="popup-audio" src="pop-up.mp3" preload="auto"></audio>
+    
+    <script src="intro.js"></script>
+    <script src="main.js"></script>
+    <script src="ending.js"></script>
+</body>
+</html>
